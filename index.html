@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <router-view />
+    </div>
+    <template id="list-template">
+        <ul>
+            <input v-model="search" placeholder="Enter search terms">
+            <p>Displaying {{ filteredPosts.length }} posts, filtered by
+                <strong>{{ search }}</strong>
+            </p>
+            <li v-for="post in filteredPosts">
+                <router-link :to="{ name: 'post', params: { id: post.id }}">
+                    {{post.title}}
+                </router-link>
+            </li>
+        </ul>
+    </template>
+    <template id="post-template">
+        <div>
+            <router-link :to="{ name: 'homepage' }">Homepage</router-link>
+            <h3>{{post.title}}</h3>
+            {{post.body}}
+        </div>
+    </template>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.5.3/vue-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
